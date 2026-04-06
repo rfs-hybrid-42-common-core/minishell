@@ -1,0 +1,46 @@
+{
+   leak_readline
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:readline
+}
+{
+   leak_add_history
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:add_history
+}
+{
+   leak_readline_bracketed_paste
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:rl_bracketed_paste_begin
+}
+{
+   leak_readline_undo
+   Memcheck:Leak
+   match-leak-kinds: all
+   ...
+   fun:rl_add_undo
+}
+{
+   readline_invalid_read_8
+   Memcheck:Addr8
+   ...
+   fun:rl_display_match_list
+}
+{
+   readline_invalid_read_1
+   Memcheck:Addr1
+   ...
+   fun:rl_display_match_list
+}
+{
+   readline_invalid_write_1
+   Memcheck:Addr1
+   ...
+   fun:rl_display_match_list
+}
