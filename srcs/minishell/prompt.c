@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:24:55 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/06 04:48:39 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/10 02:53:26 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ static char	*get_username(t_env *env)
 	while (env)
 	{
 		if (!ft_strcmp(env->key, "USER"))
-			return (ft_strdup(env->val));
+		{
+			if (env->val)
+				return (ft_strdup(env->val));
+			return (ft_strdup("minishell"));
+		}
 		env = env->next;
 	}
 	return (ft_strdup("minishell"));
