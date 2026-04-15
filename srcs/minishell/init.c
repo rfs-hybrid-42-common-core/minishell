@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:24:10 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/06 17:07:13 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/15 22:12:13 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ static void	update_shlvl(t_mini *mini)
 	shlvl = 1;
 	if (env && env->val)
 		shlvl = get_current_shlvl(env->val) + 1;
-	if (shlvl > 1000)
+	if (shlvl >= 1000)
 	{
 		ft_putstr_fd("minishell: warning: shell level (", STDERR_FILENO);
 		ft_putnbr_fd(shlvl, STDERR_FILENO);
