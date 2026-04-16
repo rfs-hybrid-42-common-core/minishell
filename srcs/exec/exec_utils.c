@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:03:27 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/06 04:28:54 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:14:29 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ int	exec_exit_status(int status)
 	{
 		sig = WTERMSIG(status);
 		if (sig == SIGINT)
-			write(STDOUT_FILENO, "\n", 1);
+			ft_putendl_fd(NULL, STDERR_FILENO);
 		else if (sig == SIGQUIT)
-			ft_putendl_fd("Quit (core dumped)", STDOUT_FILENO);
+			ft_putendl_fd("Quit (core dumped)", STDERR_FILENO);
+		else if (sig == SIGSEGV)
+			ft_putendl_fd("Segmentation fault (core dumped)", STDERR_FILENO);
 		return (128 + sig);
 	}
 	return (EXIT_FAILURE);
