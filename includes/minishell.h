@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:21:46 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/06 15:46:19 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:17:21 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,6 @@
  * Calculated as 128 + 2 (SIGINT).
  */
 # define EXIT_SIGINT		130
-
-/**
- * @def EXIT_SIGQUIT
- * @brief Exit status for a process terminated by SIGQUIT.
- * @details Standard POSIX exit code (131) for a process killed by `Ctrl+\`. 
- * Calculated as 128 + 3 (SIGQUIT).
- */
-# define EXIT_SIGQUIT		131
 
 /* ========================================================================== */
 /* TYPEDEFS & DATA STRUCTURES                                                 */
