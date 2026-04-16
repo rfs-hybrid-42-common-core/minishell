@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:21:46 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/16 15:17:21 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/16 18:13:16 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,40 @@
 /* ========================================================================== */
 
 /**
+ * @def LOG_GREEN
+ * @brief ANSI escape code for bold green text, wrapped for Readline.
+ * @details Uses `\001` and `\002` to tell Readline these are non-printing 
+ * characters, preventing line-wrapping visual bugs. Applied to the user@host 
+ * section of the prompt.
+ */
+# define LOG_GREEN			"\001\x1b[1;32m\002"
+
+/**
+ * @def LOG_BLUE
+ * @brief ANSI escape code for bold blue text, wrapped for Readline.
+ * @details Uses `\001` and `\002` to tell Readline these are non-printing 
+ * characters, ensuring proper cursor calculation. Applied to the directory 
+ * path section of the prompt.
+ */
+# define LOG_BLUE			"\001\x1b[1;34m\002"
+
+/**
+ * @def LOG_RST
+ * @brief ANSI escape code to reset text formatting, wrapped for Readline.
+ * @details Clears previous color attributes to prevent color bleeding into 
+ * the user's typed command. Wrapped in `\001` and `\002` for safe prompt 
+ * length calculation.
+ */
+# define LOG_RST			"\001\x1b[0m\002"
+
+/**
  * @def PID_SIZE
  * @brief Maximum buffer size for the PID string.
  * @details Used to allocate memory when caching the shell's PID as a string 
  * for `$$` expansion.
  */
 # ifndef PID_SIZE
-#  define PID_SIZE 32
+#  define PID_SIZE 			32
 # endif
 
 /**

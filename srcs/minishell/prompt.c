@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:24:55 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/10 02:53:26 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/16 16:53:29 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,29 +141,29 @@ static char	*get_dir(t_env *env)
  */
 void	get_prompt_info(t_prompt *prompt, t_env *env)
 {
-	char	*user;
-	char	*host;
-	char	*dir;
+	char	*info[3];
 	size_t	len;
 
-	user = get_username(env);
-	host = get_hostname();
-	dir = get_dir(env);
-	if (!user || !host || !dir)
-		return (free(user), free(host), free(dir));
-	len = ft_strlen(user) + ft_strlen(host) + ft_strlen(dir) + 5;
+	info[0] = get_username(env);
+	info[1] = get_hostname();
+	info[2] = get_dir(env);
+	if (!info[0] || !info[1] || !info[2])
+		return (free(info[0]), free(info[1]), free(info[2]));
+	len = ft_strlen(info[0]) + ft_strlen(info[1]) + ft_strlen(info[2]) + 5;
+	len += ft_strlen(LOG_GREEN) + ft_strlen(LOG_BLUE) + ft_strlen(LOG_RST) * 2;
 	free(prompt->login);
 	prompt->login = ft_calloc(len, sizeof(char));
-	if (prompt->login)
-	{
-		ft_strlcat(prompt->login, user, len);
-		ft_strlcat(prompt->login, "@", len);
-		ft_strlcat(prompt->login, host, len);
-		ft_strlcat(prompt->login, ":", len);
-		ft_strlcat(prompt->login, dir, len);
-		ft_strlcat(prompt->login, "$ ", len);
-	}
-	free(user);
-	free(host);
-	free(dir);
+	if (!prompt->login)
+		return (free(info[0]), free(info[1]), free(info[2]));
+	ft_strlcat(prompt->login, LOG_GREEN, len);
+	ft_strlcat(prompt->login, info[0], len);
+	ft_strlcat(prompt->login, "@", len);
+	ft_strlcat(prompt->login, info[1], len);
+	ft_strlcat(prompt->login, LOG_RST, len);
+	ft_strlcat(prompt->login, ":", len);
+	ft_strlcat(prompt->login, LOG_BLUE, len);
+	ft_strlcat(prompt->login, info[2], len);
+	ft_strlcat(prompt->login, LOG_RST, len);
+	ft_strlcat(prompt->login, "$ ", len);
+	return (free(info[0]), free(info[1]), free(info[2]));
 }
