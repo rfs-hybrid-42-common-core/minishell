@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:58:28 by maaugust          #+#    #+#             */
-/*   Updated: 2026/04/06 16:24:22 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/17 05:17:09 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	exec_left_child(t_mini *mini, t_ast *lnode, int *p_fd)
 		exit(EXIT_FAILURE);
 	}
 	close(p_fd[1]);
+	signal(SIGPIPE, SIG_IGN);
 	mini->exit_code = exec(mini, lnode);
 	cleanup_iteration(mini);
 	free_mini(mini);
